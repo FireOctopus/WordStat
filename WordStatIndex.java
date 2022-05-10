@@ -8,8 +8,8 @@ public class WordStatIndex {
         int j = 1;
         LinkedHashMap<String, ArrayList<Integer>> words = new LinkedHashMap<>();
         StringBuilder str = new StringBuilder();
-        try (Scan myscan = new Scan(new FileInputStream(args[0]))){
-            try {
+        try {
+            try (Scan myscan = new Scan(new FileInputStream(args[0]))) {
                 String line;
                 while (myscan.hasNextString()) {
                     i = 0;
@@ -33,8 +33,6 @@ public class WordStatIndex {
                     }
 
                 }
-            } finally {
-                myscan.close();
             }
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(args[1], StandardCharsets.UTF_8))) {
                 for (Map.Entry<String, ArrayList<Integer>> k : words.entrySet()) {
